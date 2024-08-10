@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ science_articles.title }}</h1>
+    {% if science_articles.image %}
+        <img src="{{ science_articles.image.url }}" alt="{{ science_articles.title}}" style="width:600px;height:350px">
+    {% else %}
+        <p>Add a science article</p>
+    {% endif %}   
+<p>{{ science_articles.content|safe }}</p>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block content%}
+{% include "columns.html" %}
+<body>
+    <div class="article-grid">
+        {% for life_culture_item in life_culture %}
+            <div class="article-box">
+                <h3><a href='/life_culture/{{ life_culture_item.id }}/'>{{ life_culture_item.title }}</a></h3>
+                <p>{{ life_culture_item.content|truncatewords:50|safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}

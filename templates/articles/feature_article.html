@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ feature_articles.title }}</h1>
+
+    {% if feature_articles.image %}
+        <img src="{{ feature_articles.image.url }}" alt="{{ feature_articles.title}}" style="width:600px;height:350px">
+    {% else %}
+        <p>Add a feature article</p>
+    {% endif %}  
+
+{% endblock content %}

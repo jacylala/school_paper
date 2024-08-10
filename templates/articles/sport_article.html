@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ sport_articles.title }}</h1>
+    {% if sport_articles.image %}
+        <img src="{{ sport_articles.image.url }}" alt="{{ sport_articles.title}}" style="width:600px;height:350px">
+    {% else %}
+        <p>Add a sport article</p>
+    {% endif %}  
+<p>{{ sport_articles.content|safe }}</p>
+
+{% endblock content %}

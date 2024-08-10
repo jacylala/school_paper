@@ -1,0 +1,17 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block content%}
+{% include "columns.html" %}
+<body>
+    <div class="article-grid">
+        {% for feature_item in feature %}
+            <div class="article-box">
+                <h3><a href='/feature/{{ feature_item.id }}/'>{{ feature_item.title }}</a></h3>
+                <p>{{ feature_item.content|truncatewords:50 }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}

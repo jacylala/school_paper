@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ life_culture_articles.title }}</h1>
+    {% if life_culture_articles.image %}
+        <img src="{{ life_culture_articles.image.url }}" alt="{{ life_culture_articles.title}}" style="width:600px;height:350px">
+    {% else %}
+        <p>Add an art article</p>
+    {% endif %}  
+<p>{{ life_culture_articles.content|safe }}</p>
+
+{% endblock content %}

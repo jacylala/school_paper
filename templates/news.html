@@ -1,0 +1,18 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block content%}
+{% include "columns.html" %}
+<body>
+    <div class="article-grid">
+        {% for news_item in news %}
+            <div class="article-box">
+                <img src="{{ news_item.image.url }}" alt="{{ news_item.title}}" style="width:300px;height:300px">
+                <h3><a href='/news/{{ news_item.id }}/'>  {{ news_item.title }}</a></h3>
+                <p>{{ news_item.content|truncatewords:50|safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}

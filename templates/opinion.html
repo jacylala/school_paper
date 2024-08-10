@@ -1,0 +1,17 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block content%}
+{% include "columns.html" %}
+<body>
+    <div class="article-grid">
+        {% for opinion_item in opinion %}
+            <div class="article-box">
+                <h3><a href='/opinion/{{ opinion_item.id }}/'>{{ opinion_item.title }}</a></h3>
+                <p>{{ opinion_item.content|truncatewords:50 }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block content%}
+{% include "columns.html" %}
+<body>
+    <div class="article-grid">
+        {% for art_item in art %}
+            <div class="article-box">
+                <h3><a href='/art/{{ art_item.id }}/'>{{ art_item.title }}</a></h3>
+                {% if art_item.image %}
+                    <img src="{{ art_item.image.url }}" alt="{{ art_item.title}}" style="width:350px;height:300px">
+                {% else %}
+                    <p>Add an art article image</p>
+                {% endif %}  
+                <p style="padding:2%;">{{ art_item.content|truncatewords:50|safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}

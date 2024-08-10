@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ opinion_articles.title }}</h1>
+    {% if opinion_articles.image %}
+        <img src="{{ opinion_articles.image.url }}" alt="{{ opinion_articles.title}}" style="width:600px;height:350px">
+    {% else %}
+        <p>Add an opinion article</p>
+    {% endif %}  
+<p>{{ opinion_articles.content|safe }}</p>
+
+{% endblock content %}
