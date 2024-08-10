@@ -1,0 +1,176 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block content %}
+<style>
+.item1 { grid-area: news; }
+.item2 { grid-area: main_news; }
+.item3 { grid-area: social_media; }
+.item4 { grid-area: opinion; }
+.item5 { grid-area: arts; }
+.item6 { grid-area: life_and_culture; }
+.item7 { grid-area: science; }
+.item8 { grid-area: feature; }
+.item9 { grid-area: main_sport; }
+.item10 { grid-area: sport; }
+.item11 { grid-area: wordle; }
+.item12 { grid-area: connections; }
+
+.wrapper {
+    max-width: 2000px; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the wrapper */
+    padding: 50px; /* Add padding for margins */
+    background-color: #4097ee; /* Optional: background color for the wrapper */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'news news main_news main_news'
+    'opinion arts life_and_culture science'
+    'main_sport main_sport main_sport sport'
+    'feature feature feature feature'
+    'wordle wordle connections connections';
+    gap: 1px;
+    background-color:rgb(255, 255, 255);
+    padding: 0px;
+}
+
+.grid-container > div {
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  padding: 20px 0;
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+  max-width: 1500px;
+}
+
+h3 {
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+  font-size: 120%;
+  font-weight: 600;
+  font-style: normal;
+  text-align: left;
+  padding: 0%;
+}
+
+p {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100%;
+  text-align: left;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+  font-size: 150%;
+  font-weight: 650;
+  font-style: normal;
+  text-align: left;
+  padding: 0%;
+}
+</style>
+<body>
+
+<div class="grid-container">
+  <div class="item1">
+    <h2><a href="/news/">NEWS</a></h2>
+    {% for news_item in latest_news %}
+            <h3><a href='/news/{{ news_item.id }}/'>{{ news_item.title }}</a></h3>
+            <p>{{ news_item.content|truncatewords:50|safe }}</p>
+            <hr>
+        {% endfor %}
+  </div>
+  <div class="item2">
+    {% if main_news %}
+        <h3><a href='/news/{{ main_news.id }}/'>{{ main_news.title }}</a></h3>
+        <a href="/news/{{ main_news.id }}/">
+          <img src="{{ main_news.image.url }}" alt="{{ main_news.title}}" style="width:600px;height:350px" class="hover-effect">
+        </a>
+        <p>{{ main_news.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main news article</p>
+    {% endif %}   
+  </div>
+  <div class="item4">
+    <h2>OPINION</h2>
+    {% if main_opinion %}
+        <a href='/opinion/{{ main_opinion.id }}/'>
+          <img src="{{ main_opinion.image.url }}" alt="{{ main_opinion.title}}" style="width:300px;height:300px" class="hover-effect">
+        </a>
+        <h3><a href='/opinion/{{ main_opinion.id }}/'>{{ main_opinion.title }}</a></h3>
+        <p>{{ main_opinion.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main opinion article</p>
+    {% endif %}
+  </div>
+  <div class="item5">
+    <h2>ARTS</h2>
+    {% if main_art %}
+        <img src="{{ main_art.image.url }}" alt="{{ main_art.title}}" style="width:300px;height:300px">
+        <h3><a href='/art/{{ main_art.id }}/'>{{ main_art.title }}</a></h3>
+        <p>{{ main_art.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main art article</p>
+    {% endif %}
+  </div>
+  <div class="item6">
+    <h2>LIFE & CULTURE</h2>
+    {% if main_life_culture %}
+        <img src="{{ main_life_culture.image.url }}" alt="{{ main_life_culture.title}}" style="width:300px;height:300px">
+        <h3><a href='/life_culture/{{ main_life_culture.id }}/'>{{ main_life_culture.title }}</a></h3>
+        <p>{{ main_life_culture.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main life & culture article</p>
+    {% endif %}
+  </div>
+  <div class="item7">
+    <h2>SCIENCE</h2>
+    {% if main_science %}
+        <img src="{{ main_science.image.url }}" alt="{{ main_science.title}}" style="width:300px;height:300px">
+        <h3><a href='/science/{{ main_science.id }}/'>{{ main_science.title }}</a></h3>
+        <p>{{ main_science.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main science article</p>
+    {% endif %}
+  </div>
+  <div class="item8">
+    <h2>FEATURES</h2>
+    {% for feature_item in latest_features %}
+        <h3><a href='/feature/{{ feature_item.id }}/'>{{ feature_item.title }}</a></h3>
+        <p>{{ feature_item.content|truncatewords:50|safe }}</p>
+        <hr>
+    {% endfor %}
+  </div>
+  <div class="item9">
+    <h2>SPORTS</h2>
+    {% if main_sport %}
+        <img src="{{ main_sport.image.url }}" alt="{{ main_sport.title}}" style="width:500px;height:300px;float:right;padding:1%">
+        <h3><a href='/sport/{{ main_sport.id }}/'>{{ main_sport.title }}</a></h3>
+        <p>{{ main_sport.content|truncatewords:50|safe }}</p> 
+    {% else %}
+        <p>Add a main sport article</p>
+    {% endif %}
+  </div>
+  <div class="item10">
+    {% for sport_item in latest_sport %}
+        <h3><a href='/sport/{{ sport_item.id }}/'>{{ sport_item.title }}</a></h3>
+        <p>{{ sport_item.content|truncatewords:50|safe }}</p>
+        <hr>
+    {% endfor %}
+  </div>
+  <div class="item11">
+    <h2>GAMES</h2>
+    <iframe src="https://mywordle.strivemath.com/?word=pflpa" style="height:700px;width:600px;border:none;" title="Wordle"></iframe>
+  </div>
+  <div class="item12">
+    <iframe src="https://connections.swellgarfo.com/game/-O-JOeqAPl0Q1NBtgeFD" style="height:900px;width:700px;border:none;" title="Connections"></iframe>
+  </div>
+</div>
+    
+</body>
+
+{% endblock content %}
